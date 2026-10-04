@@ -1,0 +1,46 @@
+runtime:
+  device: auto
+  log_level: INFO
+
+detector:
+  weights: yolov8n-seg.pt
+  conf: 0.45
+  iou: 0.5
+  imgsz: 640
+  max_det: 40
+  class_names: null
+
+depth:
+  model_id: depth-anything/Depth-Anything-V2-Small-hf
+  percentiles: [1.0, 99.0]
+  interval: 1
+
+tracking:
+  enabled: true
+  track_high_thresh: 0.25
+  track_low_thresh: 0.1
+  new_track_thresh: 0.25
+  track_buffer: 30
+  match_thresh: 0.8
+  fuse_score: true
+  motion_window: 5
+  min_speed_px_s: 15.0
+  depth_trend_threshold: 0.05
+
+spatial:
+  near_threshold: 0.66
+  far_threshold: 0.33
+  erosion_px: 3
+  min_mask_pixels: 20
+  lr_margin_frac: 0.25
+  depth_margin: 0.10
+  overlap_threshold: 0.30
+
+output:
+  dir: results
+  save_video: true
+  save_json: true
+  show_masks: true
+  show_motion: true
+  side_by_side_depth: true
+  arrow_seconds: 0.5
